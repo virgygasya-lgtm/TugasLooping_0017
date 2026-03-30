@@ -28,6 +28,16 @@ bool isFibonacci(int num) {
     return (num == a || num == b);
 }
 
+// Fungsi input angka dari user
+void inputNumber() {
+    cout << "Masukkan angka (>=1): ";
+    cin >> n;
+    if (n < 1) {
+        cout << "Input tidak valid. Angka harus >= 1.\n";
+        n = 1; // fallback default
+    }
+}
+
 int main() {
     cout << "Program Tugas Looping dimulai..." << endl;
     return 0;
