@@ -5,6 +5,7 @@
  * Program ini dibuat untuk latihan looping dan kondisi.
  * Fungsinya adalah mengecek apakah sebuah bilangan termasuk
  * bilangan prima atau bilangan Fibonacci.
+ * Sekarang ditambahkan fitur riwayat input angka.
  *
  * File   : main.cpp
  * Author : Virgy
@@ -12,12 +13,14 @@
  */
 
 #include <iostream>
-#include <limits> // untuk numeric_limits
+#include <vector>
+#include <limits>
 using namespace std;
 
 // Variabel global
 int n;
 int choice;
+vector<int> history; // menyimpan riwayat input angka
 
 bool isPrime(int num) 
 {
@@ -35,8 +38,7 @@ bool isFibonacci(int num)
 {
     if (num < 0) return false;
     int a = 0, b = 1;
-    while (b < num) 
-    {
+    while (b < num) {
         int temp = a + b;
         a = b;
         b = temp;
@@ -44,14 +46,15 @@ bool isFibonacci(int num)
     return (num == a || num == b);
 }
 
-void inputNumber() {
+void inputNumber() 
+{
     cout << "Masukkan angka (>=1): ";
     cin >> n;
 
-    // Error handling jika input bukan angka
-    if (cin.fail()) {
-        cin.clear(); // reset error flag
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // buang input salah
+    if (cin.fail()) 
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Input tidak valid. Default angka = 1.\n";
         n = 1;
     }
@@ -61,6 +64,9 @@ void inputNumber() {
         cout << "Input tidak valid. Angka harus >= 1.\n";
         n = 1;
     }
+
+    // simpan ke riwayat
+    history.push_back(n);
 }
 
 void showResultPrime() 
@@ -92,12 +98,23 @@ void showMenu()
     cout << "Pilihan: ";
     cin >> choice;
 
-    // Error handling jika input bukan angka
     if (cin.fail()) 
     {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        choice = -1; // supaya masuk ke default case
+        choice = -1;
+    }
+}
+
+void showHistory() 
+{
+    cout << "\n=== Riwayat Input Angka ===\n";
+    if (history.empty()) {
+        cout << "Belum ada angka yang dicek.\n";
+    } else {
+        for (int i = 0; i < history.size(); i++) {
+            cout << i + 1 << ". " << history[i] << endl;
+        }
     }
 }
 
@@ -121,6 +138,7 @@ int main()
                 break;
             case 0:
                 cout << "Terima kasih telah menggunakan program ini.\n";
+                showHistory(); // tampilkan riwayat sebelum keluar
                 break;
             default:
                 cout << "Pilihan tidak valid. Silakan coba lagi.\n";
