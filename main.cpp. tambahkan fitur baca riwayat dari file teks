@@ -5,7 +5,7 @@
  * Program ini dibuat untuk latihan looping dan kondisi.
  * Fungsinya adalah mengecek apakah sebuah bilangan termasuk
  * bilangan prima atau bilangan Fibonacci.
- * Sekarang ditambahkan fitur untuk menyimpan riwayat input ke file teks.
+ * Sekarang ditambahkan fitur untuk membaca riwayat input dari file teks.
  *
  * File   : main.cpp
  * Author : Virgy
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
-#include <fstream> // untuk file output
+#include <fstream> // untuk file input/output
 using namespace std;
 
 // Variabel global
@@ -27,8 +27,7 @@ bool isPrime(int num)
 {
     if (num <= 1) return false;
     int i = 2;
-    while (i <= num / 2) 
-    {
+    while (i <= num / 2) {
         if (num % i == 0) return false;
         i++;
     }
@@ -39,8 +38,7 @@ bool isFibonacci(int num)
 {
     if (num < 0) return false;
     int a = 0, b = 1;
-    while (b < num) 
-    {
+    while (b < num) {
         int temp = a + b;
         a = b;
         b = temp;
@@ -91,14 +89,14 @@ void showResultFibonacci()
     }
 }
 
-void showMenu() 
-{
+void showMenu() {
     cout << "\n=== MENU ===\n";
     cout << "1. Cek bilangan prima\n";
     cout << "2. Cek bilangan Fibonacci\n";
     cout << "3. Lihat riwayat input\n";
     cout << "4. Hapus riwayat input\n";
     cout << "5. Simpan riwayat ke file\n";
+    cout << "6. Baca riwayat dari file\n";
     cout << "0. Keluar\n";
     cout << "Pilihan: ";
     cin >> choice;
@@ -111,8 +109,7 @@ void showMenu()
     }
 }
 
-void showHistory() 
-{
+void showHistory() {
     cout << "\n=== Riwayat Input Angka ===\n";
     if (history.empty()) {
         cout << "Belum ada angka yang dicek.\n";
@@ -131,7 +128,8 @@ void clearHistory()
     cout << "Riwayat input berhasil dihapus.\n";
 }
 
-void saveHistoryToFile() {
+void saveHistoryToFile() 
+{
     ofstream file("riwayat.txt");
     if (!file) 
     {
@@ -140,13 +138,14 @@ void saveHistoryToFile() {
     }
 
     file << "=== Riwayat Input Angka ===\n";
-    if (history.empty()) {
+    if (history.empty()) 
+    {
         file << "Belum ada angka yang dicek.\n";
     } else 
     {
         for (int i = 0; i < history.size(); i++) 
         {
-            file << i + 1 << ". " << history[i] << endl;
+            file << history[i] << endl;
         }
     }
 
@@ -154,13 +153,43 @@ void saveHistoryToFile() {
     cout << "Riwayat berhasil disimpan ke file 'riwayat.txt'.\n";
 }
 
+void loadHistoryFromFile() 
+{
+    ifstream file("riwayat.txt");
+    if (!file) 
+    {
+        cout << "File riwayat tidak ditemukan.\n";
+        return;
+    }
+
+    history.clear();
+    string line;
+    while (getline(file, line)) 
+    {
+        // abaikan baris judul
+        if (line.find("===") != string::npos) continue;
+        if (line.empty()) continue;
+
+        try 
+        {
+            int value = stoi(line);
+            history.push_back(value);
+        } catch (...) 
+        {
+            // abaikan baris non-angka
+        }
+    }
+
+    file.close();
+    cout << "Riwayat berhasil dibaca dari file 'riwayat.txt'.\n";
+}
+
 int main() 
 {
     cout << "=== Selamat datang di Program Tugas Looping ===\n";
     cout << "Program ini dapat mengecek bilangan prima dan Fibonacci.\n";
 
-    do 
-    {
+    do {
         showMenu();
         switch (choice) 
         {
@@ -180,6 +209,9 @@ int main()
                 break;
             case 5:
                 saveHistoryToFile();
+                break;
+            case 6:
+                loadHistoryFromFile();
                 break;
             case 0:
                 cout << "Terima kasih telah menggunakan program ini.\n";
