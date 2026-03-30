@@ -38,6 +38,15 @@ void inputNumber() {
     }
 }
 
+// Fungsi menampilkan hasil cek prima
+void showResultPrime() {
+    if (isPrime(n)) {
+        cout << n << " adalah bilangan prima.\n";
+    } else {
+        cout << n << " bukan bilangan prima.\n";
+    }
+}
+
 int main() {
     cout << "Program Tugas Looping dimulai..." << endl;
     return 0;
