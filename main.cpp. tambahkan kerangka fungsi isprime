@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+// Variabel global
+int n;
+int choice;
+
+// Kerangka fungsi cek bilangan prima
+bool isPrime(int num) {
+    // logika akan ditambahkan di commit berikutnya
+    return false;
+}
+
+int main() {
+    cout << "Program Tugas Looping dimulai..." << endl;
+    return 0;
+}
