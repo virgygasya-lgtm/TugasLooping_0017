@@ -6,10 +6,12 @@ int n;
 int choice;
 
 // Fungsi cek bilangan prima
-bool isPrime(int num) {
+bool isPrime(int num) 
+{
     if (num <= 1) return false;
     int i = 2;
-    while (i <= num / 2) {
+    while (i <= num / 2) 
+    {
         if (num % i == 0) return false;
         i++;
     }
@@ -17,10 +19,12 @@ bool isPrime(int num) {
 }
 
 // Fungsi cek bilangan Fibonacci
-bool isFibonacci(int num) {
+bool isFibonacci(int num) 
+{
     if (num < 0) return false;
     int a = 0, b = 1;
-    while (b < num) {
+    while (b < num) 
+    {
         int temp = a + b;
         a = b;
         b = temp;
@@ -29,18 +33,22 @@ bool isFibonacci(int num) {
 }
 
 // Fungsi input angka dari user
-void inputNumber() {
+void inputNumber() 
+{
     cout << "Masukkan angka (>=1): ";
     cin >> n;
-    if (n < 1) {
+    if (n < 1) 
+    {
         cout << "Input tidak valid. Angka harus >= 1.\n";
         n = 1; // fallback default
     }
 }
 
 // Fungsi menampilkan hasil cek prima
-void showResultPrime() {
-    if (isPrime(n)) {
+void showResultPrime() 
+{
+    if (isPrime(n)) 
+    {
         cout << n << " adalah bilangan prima.\n";
     } else {
         cout << n << " bukan bilangan prima.\n";
@@ -48,16 +56,20 @@ void showResultPrime() {
 }
 
 // Fungsi menampilkan hasil cek Fibonacci
-void showResultFibonacci() {
-    if (isFibonacci(n)) {
+void showResultFibonacci() 
+{
+    if (isFibonacci(n)) 
+    {
         cout << n << " termasuk bilangan Fibonacci.\n";
-    } else {
+    } else 
+    {
         cout << n << " bukan bilangan Fibonacci.\n";
     }
 }
 
 // Fungsi menampilkan menu
-void showMenu() {
+void showMenu() 
+{
     cout << "\n=== MENU ===\n";
     cout << "1. Cek bilangan prima\n";
     cout << "2. Cek bilangan Fibonacci\n";
@@ -66,7 +78,28 @@ void showMenu() {
     cin >> choice;
 }
 
-int main() {
-    cout << "Program Tugas Looping dimulai..." << endl;
+int main() 
+{
+    do 
+    {
+        showMenu();
+        switch (choice) 
+        {
+            case 1:
+                inputNumber();
+                showResultPrime();
+                break;
+            case 2:
+                inputNumber();
+                showResultFibonacci();
+                break;
+            case 0:
+                cout << "Program selesai.\n";
+                break;
+            default:
+                cout << "Pilihan tidak valid.\n";
+        }
+    } while (choice != 0);
+
     return 0;
 }
