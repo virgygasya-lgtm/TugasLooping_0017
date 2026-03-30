@@ -47,6 +47,15 @@ void showResultPrime() {
     }
 }
 
+// Fungsi menampilkan hasil cek Fibonacci
+void showResultFibonacci() {
+    if (isFibonacci(n)) {
+        cout << n << " termasuk bilangan Fibonacci.\n";
+    } else {
+        cout << n << " bukan bilangan Fibonacci.\n";
+    }
+}
+
 int main() {
     cout << "Program Tugas Looping dimulai..." << endl;
     return 0;
