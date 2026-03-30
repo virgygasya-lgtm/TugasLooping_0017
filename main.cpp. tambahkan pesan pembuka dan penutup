@@ -5,20 +5,17 @@ using namespace std;
 int n;
 int choice;
 
-bool isPrime(int num) 
-{
+bool isPrime(int num) {
     if (num <= 1) return false;
     int i = 2;
-    while (i <= num / 2) 
-    {
+    while (i <= num / 2) {
         if (num % i == 0) return false;
         i++;
     }
     return true;
 }
 
-bool isFibonacci(int num) 
-{
+bool isFibonacci(int num) {
     if (num < 0) return false;
     int a = 0, b = 1;
     while (b < num) {
@@ -29,8 +26,7 @@ bool isFibonacci(int num)
     return (num == a || num == b);
 }
 
-void inputNumber() 
-{
+void inputNumber() {
     cout << "Masukkan angka (>=1): ";
     cin >> n;
     if (n < 1) {
@@ -39,8 +35,7 @@ void inputNumber()
     }
 }
 
-void showResultPrime() 
-{
+void showResultPrime() {
     if (isPrime(n)) {
         cout << n << " adalah bilangan prima.\n";
     } else {
@@ -48,8 +43,7 @@ void showResultPrime()
     }
 }
 
-void showResultFibonacci() 
-{
+void showResultFibonacci() {
     if (isFibonacci(n)) {
         cout << n << " termasuk bilangan Fibonacci.\n";
     } else {
@@ -67,10 +61,12 @@ void showMenu() {
 }
 
 int main() {
+    cout << "=== Selamat datang di Program Tugas Looping ===\n";
+    cout << "Program ini dapat mengecek bilangan prima dan Fibonacci.\n";
+
     do {
         showMenu();
-        switch (choice)
-         {
+        switch (choice) {
             case 1:
                 inputNumber();
                 showResultPrime();
@@ -80,12 +76,13 @@ int main() {
                 showResultFibonacci();
                 break;
             case 0:
-                cout << "Program selesai.\n";
+                cout << "Terima kasih telah menggunakan program ini.\n";
                 break;
             default:
                 cout << "Pilihan tidak valid. Silakan coba lagi.\n";
         }
     } while (choice != 0);
 
+    cout << "=== Program selesai ===\n";
     return 0;
 }
