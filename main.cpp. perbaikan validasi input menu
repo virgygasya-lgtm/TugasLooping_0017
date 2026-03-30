@@ -5,7 +5,6 @@ using namespace std;
 int n;
 int choice;
 
-// Fungsi cek bilangan prima
 bool isPrime(int num) 
 {
     if (num <= 1) return false;
@@ -18,13 +17,11 @@ bool isPrime(int num)
     return true;
 }
 
-// Fungsi cek bilangan Fibonacci
 bool isFibonacci(int num) 
 {
     if (num < 0) return false;
     int a = 0, b = 1;
-    while (b < num) 
-    {
+    while (b < num) {
         int temp = a + b;
         a = b;
         b = temp;
@@ -32,44 +29,35 @@ bool isFibonacci(int num)
     return (num == a || num == b);
 }
 
-// Fungsi input angka dari user
 void inputNumber() 
 {
     cout << "Masukkan angka (>=1): ";
     cin >> n;
-    if (n < 1) 
-    {
+    if (n < 1) {
         cout << "Input tidak valid. Angka harus >= 1.\n";
-        n = 1; // fallback default
+        n = 1;
     }
 }
 
-// Fungsi menampilkan hasil cek prima
 void showResultPrime() 
 {
-    if (isPrime(n)) 
-    {
+    if (isPrime(n)) {
         cout << n << " adalah bilangan prima.\n";
     } else {
         cout << n << " bukan bilangan prima.\n";
     }
 }
 
-// Fungsi menampilkan hasil cek Fibonacci
 void showResultFibonacci() 
 {
-    if (isFibonacci(n)) 
-    {
+    if (isFibonacci(n)) {
         cout << n << " termasuk bilangan Fibonacci.\n";
-    } else 
-    {
+    } else {
         cout << n << " bukan bilangan Fibonacci.\n";
     }
 }
 
-// Fungsi menampilkan menu
-void showMenu() 
-{
+void showMenu() {
     cout << "\n=== MENU ===\n";
     cout << "1. Cek bilangan prima\n";
     cout << "2. Cek bilangan Fibonacci\n";
@@ -78,13 +66,11 @@ void showMenu()
     cin >> choice;
 }
 
-int main() 
-{
-    do 
-    {
+int main() {
+    do {
         showMenu();
-        switch (choice) 
-        {
+        switch (choice)
+         {
             case 1:
                 inputNumber();
                 showResultPrime();
@@ -97,7 +83,7 @@ int main()
                 cout << "Program selesai.\n";
                 break;
             default:
-                cout << "Pilihan tidak valid.\n";
+                cout << "Pilihan tidak valid. Silakan coba lagi.\n";
         }
     } while (choice != 0);
 
