@@ -56,6 +56,16 @@ void showResultFibonacci() {
     }
 }
 
+// Fungsi menampilkan menu
+void showMenu() {
+    cout << "\n=== MENU ===\n";
+    cout << "1. Cek bilangan prima\n";
+    cout << "2. Cek bilangan Fibonacci\n";
+    cout << "0. Keluar\n";
+    cout << "Pilihan: ";
+    cin >> choice;
+}
+
 int main() {
     cout << "Program Tugas Looping dimulai..." << endl;
     return 0;
