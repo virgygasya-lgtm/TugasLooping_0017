@@ -5,7 +5,7 @@
  * Program ini dibuat untuk latihan looping dan kondisi.
  * Fungsinya adalah mengecek apakah sebuah bilangan termasuk
  * bilangan prima atau bilangan Fibonacci.
- * Sekarang ditambahkan opsi menu untuk melihat riwayat input.
+ * Sekarang ditambahkan fitur untuk menghapus riwayat input.
  *
  * File   : main.cpp
  * Author : Virgy
@@ -22,17 +22,20 @@ int n;
 int choice;
 vector<int> history; // menyimpan riwayat input angka
 
-bool isPrime(int num) {
+bool isPrime(int num) 
+{
     if (num <= 1) return false;
     int i = 2;
-    while (i <= num / 2) {
+    while (i <= num / 2) 
+    {
         if (num % i == 0) return false;
         i++;
     }
     return true;
 }
 
-bool isFibonacci(int num) {
+bool isFibonacci(int num) 
+{
     if (num < 0) return false;
     int a = 0, b = 1;
     while (b < num) {
@@ -70,8 +73,10 @@ void showResultPrime() {
     }
 }
 
-void showResultFibonacci() {
-    if (isFibonacci(n)) {
+void showResultFibonacci() 
+{
+    if (isFibonacci(n)) 
+    {
         cout << n << " termasuk bilangan Fibonacci.\n";
     } else {
         cout << n << " bukan bilangan Fibonacci.\n";
@@ -83,20 +88,24 @@ void showMenu() {
     cout << "1. Cek bilangan prima\n";
     cout << "2. Cek bilangan Fibonacci\n";
     cout << "3. Lihat riwayat input\n";
+    cout << "4. Hapus riwayat input\n";
     cout << "0. Keluar\n";
     cout << "Pilihan: ";
     cin >> choice;
 
-    if (cin.fail()) {
+    if (cin.fail()) 
+    {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         choice = -1;
     }
 }
 
-void showHistory() {
+void showHistory() 
+{
     cout << "\n=== Riwayat Input Angka ===\n";
-    if (history.empty()) {
+    if (history.empty()) 
+    {
         cout << "Belum ada angka yang dicek.\n";
     } else {
         for (int i = 0; i < history.size(); i++) {
@@ -105,13 +114,22 @@ void showHistory() {
     }
 }
 
-int main() {
+void clearHistory() 
+{
+    history.clear();
+    cout << "Riwayat input berhasil dihapus.\n";
+}
+
+int main() 
+{
     cout << "=== Selamat datang di Program Tugas Looping ===\n";
     cout << "Program ini dapat mengecek bilangan prima dan Fibonacci.\n";
 
-    do {
+    do 
+    {
         showMenu();
-        switch (choice) {
+        switch (choice) 
+        {
             case 1:
                 inputNumber();
                 showResultPrime();
@@ -122,6 +140,9 @@ int main() {
                 break;
             case 3:
                 showHistory();
+                break;
+            case 4:
+                clearHistory();
                 break;
             case 0:
                 cout << "Terima kasih telah menggunakan program ini.\n";
