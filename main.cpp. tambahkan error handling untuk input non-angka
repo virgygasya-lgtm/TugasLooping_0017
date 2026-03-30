@@ -12,29 +12,26 @@
  */
 
 #include <iostream>
+#include <limits> // untuk numeric_limits
 using namespace std;
 
-// Variabel global untuk menyimpan input angka dan pilihan menu
+// Variabel global
 int n;
 int choice;
 
-/**
- * Mengecek apakah sebuah bilangan adalah prima.
- */
-bool isPrime(int num) {
+bool isPrime(int num) 
+{
     if (num <= 1) return false;
     int i = 2;
-    while (i <= num / 2) {
+    while (i <= num / 2) 
+    {
         if (num % i == 0) return false;
         i++;
     }
     return true;
 }
 
-/**
- * Mengecek apakah sebuah bilangan termasuk deret Fibonacci.
- */
-bool isFibonacci(int num)
+bool isFibonacci(int num) 
 {
     if (num < 0) return false;
     int a = 0, b = 1;
@@ -47,13 +44,18 @@ bool isFibonacci(int num)
     return (num == a || num == b);
 }
 
-/**
- * Meminta user memasukkan angka dan menyimpannya ke variabel global n.
- */
-void inputNumber() 
-{
+void inputNumber() {
     cout << "Masukkan angka (>=1): ";
     cin >> n;
+
+    // Error handling jika input bukan angka
+    if (cin.fail()) {
+        cin.clear(); // reset error flag
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // buang input salah
+        cout << "Input tidak valid. Default angka = 1.\n";
+        n = 1;
+    }
+
     if (n < 1) 
     {
         cout << "Input tidak valid. Angka harus >= 1.\n";
@@ -61,36 +63,26 @@ void inputNumber()
     }
 }
 
-/**
- * Menampilkan hasil pengecekan bilangan prima.
- */
 void showResultPrime() 
 {
-    if (isPrime(n)) {
-        cout << n << " adalah bilangan prima.\n";
-    } else 
+    if (isPrime(n)) 
     {
+        cout << n << " adalah bilangan prima.\n";
+    } else {
         cout << n << " bukan bilangan prima.\n";
     }
 }
 
-/**
- * Menampilkan hasil pengecekan bilangan Fibonacci.
- */
 void showResultFibonacci() 
 {
     if (isFibonacci(n)) 
     {
         cout << n << " termasuk bilangan Fibonacci.\n";
-    } else 
-    {
+    } else {
         cout << n << " bukan bilangan Fibonacci.\n";
     }
 }
 
-/**
- * Menampilkan menu utama.
- */
 void showMenu() 
 {
     cout << "\n=== MENU ===\n";
@@ -99,11 +91,16 @@ void showMenu()
     cout << "0. Keluar\n";
     cout << "Pilihan: ";
     cin >> choice;
+
+    // Error handling jika input bukan angka
+    if (cin.fail()) 
+    {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        choice = -1; // supaya masuk ke default case
+    }
 }
 
-/**
- * Fungsi utama program.
- */
 int main() 
 {
     cout << "=== Selamat datang di Program Tugas Looping ===\n";
