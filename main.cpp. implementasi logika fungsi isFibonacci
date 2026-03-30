@@ -16,10 +16,16 @@ bool isPrime(int num) {
     return true;
 }
 
-// Kerangka fungsi cek bilangan Fibonacci
+// Fungsi cek bilangan Fibonacci
 bool isFibonacci(int num) {
-    // logika akan ditambahkan di commit berikutnya
-    return false;
+    if (num < 0) return false;
+    int a = 0, b = 1;
+    while (b < num) {
+        int temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return (num == a || num == b);
 }
 
 int main() {
