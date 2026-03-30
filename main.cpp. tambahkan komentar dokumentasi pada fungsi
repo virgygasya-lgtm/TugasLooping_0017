@@ -1,24 +1,38 @@
 #include <iostream>
 using namespace std;
 
-// Variabel global
+// Variabel global untuk menyimpan input angka dan pilihan menu
 int n;
 int choice;
 
-bool isPrime(int num) {
+/**
+ * Mengecek apakah sebuah bilangan adalah prima.
+ * @param num bilangan yang akan dicek
+ * @return true jika prima, false jika bukan
+ */
+bool isPrime(int num) 
+{
     if (num <= 1) return false;
     int i = 2;
-    while (i <= num / 2) {
+    while (i <= num / 2) 
+    {
         if (num % i == 0) return false;
         i++;
     }
     return true;
 }
 
-bool isFibonacci(int num) {
+/**
+ * Mengecek apakah sebuah bilangan termasuk deret Fibonacci.
+ * @param num bilangan yang akan dicek
+ * @return true jika termasuk Fibonacci, false jika bukan
+ */
+bool isFibonacci(int num) 
+{
     if (num < 0) return false;
     int a = 0, b = 1;
-    while (b < num) {
+    while (b < num) 
+    {
         int temp = a + b;
         a = b;
         b = temp;
@@ -26,7 +40,12 @@ bool isFibonacci(int num) {
     return (num == a || num == b);
 }
 
-void inputNumber() {
+/**
+ * Meminta user memasukkan angka dan menyimpannya ke variabel global n.
+ * Jika input kurang dari 1, akan dikoreksi menjadi 1.
+ */
+void inputNumber() 
+{
     cout << "Masukkan angka (>=1): ";
     cin >> n;
     if (n < 1) {
@@ -35,23 +54,38 @@ void inputNumber() {
     }
 }
 
-void showResultPrime() {
+/**
+ * Menampilkan hasil pengecekan bilangan prima berdasarkan input n.
+ */
+void showResultPrime() 
+{
     if (isPrime(n)) {
         cout << n << " adalah bilangan prima.\n";
-    } else {
+    } else
+    {
         cout << n << " bukan bilangan prima.\n";
     }
 }
 
-void showResultFibonacci() {
-    if (isFibonacci(n)) {
+/**
+ * Menampilkan hasil pengecekan bilangan Fibonacci berdasarkan input n.
+ */
+void showResultFibonacci() 
+{
+    if (isFibonacci(n)) 
+    {
         cout << n << " termasuk bilangan Fibonacci.\n";
-    } else {
+    } else 
+    {
         cout << n << " bukan bilangan Fibonacci.\n";
     }
 }
 
-void showMenu() {
+/**
+ * Menampilkan menu utama dan menyimpan pilihan user ke variabel global choice.
+ */
+void showMenu() 
+{
     cout << "\n=== MENU ===\n";
     cout << "1. Cek bilangan prima\n";
     cout << "2. Cek bilangan Fibonacci\n";
@@ -60,13 +94,19 @@ void showMenu() {
     cin >> choice;
 }
 
-int main() {
+/**
+ * Fungsi utama program: menampilkan menu, memproses pilihan,
+ * dan menjalankan fungsi sesuai input user.
+ */
+int main() 
+{
     cout << "=== Selamat datang di Program Tugas Looping ===\n";
     cout << "Program ini dapat mengecek bilangan prima dan Fibonacci.\n";
 
     do {
         showMenu();
-        switch (choice) {
+        switch (choice) 
+        {
             case 1:
                 inputNumber();
                 showResultPrime();
